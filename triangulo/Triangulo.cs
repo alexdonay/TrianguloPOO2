@@ -12,7 +12,7 @@ namespace triangulo
         private double ladoB;
         private double ladoC;
         private string tipo;
-
+        public string Tipo { get { return tipo; } set { tipo = value; } }
         public Triangulo(double ladoA, double ladoB, double ladoC)
         {
             this.ladoA = ladoA;
@@ -21,16 +21,46 @@ namespace triangulo
             tipo = verificaTipo();
 
         }
-        public string Tipo { get { return tipo; } set { tipo = value; } }
+        
+       
+       private boolean camposValidos(){
+            if(this.ladoA > 0 && ladoB > 0 && ladoC > 0 {
+                return True;
+            }else{
+                return False;
+            }
+        }
+        private boolean eTriangulo(){
+            if((ladoB + ladoC) > ladoA) || ((ladoA + ladoC) > ladoB) || (ladoA + ladoB > ladoC){
+                return True;
+            }else{
+            return False;
+            }
+        }
+        private boolean equilatero(){
+             if((ladoA ==ladoB)&&(ladoB ==ladoC)){
+             return True;
+             }else{
+             return False;
+             }
+        }
+        private boolean isoseles(){
+            if(((ladoA ==ladoC) && (ladoC!=ladoB)) || ((ladoB == ladoA ) && ladoC!=ladoA) || ((ladoB == ladoC)&& (ladoA!=ladoB))){
+                return True;
+            }else{
+                return False;
+            }
+            
+        }
         private string verificaTipo()
         {
-            if ((this.ladoA > 0 && ladoB > 0 && ladoC > 0) && (((ladoA + ladoB) > ladoC) || ((ladoB + ladoC) > ladoA) || ((ladoC + ladoB) > ladoA)))
+            if (eTriangulo() == True || camposValidos() == True)
             { 
             
-                if((ladoA ==ladoB)&&(ladoB ==ladoC))
+                if(equilatero == True)
                 {
                     tipo = "Equilátero";
-                }else if(((ladoA ==ladoC) && (ladoC!=ladoB)) || ((ladoB == ladoA ) && ladoC!=ladoA) || ((ladoB == ladoC)&& (ladoA!=ladoB))) {
+                }else if(isoseles == True) {
 
                     tipo = "Isóseles";
                 }
@@ -47,6 +77,5 @@ namespace triangulo
 
             return tipo;
         }
-        
     }
 }
