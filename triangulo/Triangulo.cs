@@ -12,67 +12,57 @@ namespace triangulo
         private double ladoB;
         private double ladoC;
         private string tipo;
+
         public string Tipo { get { return tipo; } set { tipo = value; } }
+
         public Triangulo(double ladoA, double ladoB, double ladoC)
         {
             this.ladoA = ladoA;
             this.ladoB = ladoB;
             this.ladoC = ladoC;
-            tipo = verificaTipo();
+            tipo = VerificaTipo();
+        }
 
-        }
-        
-       
-       private boolean camposValidos(){
-            if(this.ladoA > 0 && ladoB > 0 && ladoC > 0 {
-                return True;
-            }else{
-                return False;
-            }
-        }
-        private boolean eTriangulo(){
-            if((ladoB + ladoC) > ladoA) || ((ladoA + ladoC) > ladoB) || (ladoA + ladoB > ladoC){
-                return True;
-            }else{
-            return False;
-            }
-        }
-        private boolean equilatero(){
-             if((ladoA ==ladoB)&&(ladoB ==ladoC)){
-             return True;
-             }else{
-             return False;
-             }
-        }
-        private boolean isoseles(){
-            if(((ladoA ==ladoC) && (ladoC!=ladoB)) || ((ladoB == ladoA ) && ladoC!=ladoA) || ((ladoB == ladoC)&& (ladoA!=ladoB))){
-                return True;
-            }else{
-                return False;
-            }
-            
-        }
-        private string verificaTipo()
+        private bool CamposValidos()
         {
-            if (eTriangulo() == True || camposValidos() == True)
-            { 
-            
-                if(equilatero == True)
+            return (ladoA > 0 && ladoB > 0 && ladoC > 0);
+        }
+
+        private bool ETriangulo()
+        {
+            return ((ladoB + ladoC) > ladoA || (ladoA + ladoC) > ladoB || (ladoA + ladoB) > ladoC);
+        }
+
+        private bool Equilatero()
+        {
+            return (ladoA == ladoB && ladoB == ladoC);
+        }
+
+        private bool Isoseles()
+        {
+            return ((ladoA == ladoC && ladoC != ladoB) || (ladoB == ladoA && ladoC != ladoA) || (ladoB == ladoC && ladoA != ladoB));
+        }
+
+        private string VerificaTipo()
+        {
+            if (ETriangulo() && CamposValidos())
+            {
+                if (Equilatero())
                 {
                     tipo = "Equilátero";
-                }else if(isoseles == True) {
-
+                }
+                else if (Isoseles())
+                {
                     tipo = "Isóseles";
                 }
                 else
                 {
                     tipo = "Escaleno";
                 }
-
             }
             else
             {
-                tipo = "não é um triangulo";
+                tipo = "Não é um triângulo";
             }
 
             return tipo;
